@@ -161,6 +161,36 @@ def _entry(id_prefix: str, name: str, source: str, cite_prefix: str,
     }
 
 
+# Curated entries for amendments whose full text isn't on the scraped pages
+# but which change how the scraped provisions apply today.
+SUPPLEMENTAL_RULES = [
+    {
+        "id": "mo_28_1986",
+        "source": "Memorandum Order No. 28 (1986), amending PD 851",
+        "citation": "MO 28 (1986), amending PD 851",
+        "title": "13th-month pay extended to all rank-and-file employees",
+        "text": (
+            "Memorandum Order No. 28, issued by President Corazon C. Aquino "
+            "on August 13, 1986, modified Presidential Decree No. 851 by "
+            "removing the P1,000 monthly salary ceiling. As amended, all "
+            "employers are required to pay ALL their rank-and-file "
+            "employees a 13th-month pay not later than December 24 of every "
+            "year, regardless of the amount of their basic salary and "
+            "regardless of the nature of their employment, provided they "
+            "have worked for at least one (1) month during the calendar "
+            "year. The 13th-month pay is a statutory obligation and cannot "
+            "be waived by agreement; a provision stating that 13th-month "
+            "pay is 'built into' or 'factored into' the monthly salary does "
+            "not satisfy the Decree unless the employer actually pays the "
+            "statutory 13th-month benefit as a distinct, computable amount "
+            "equivalent to at least one-twelfth (1/12) of the basic salary "
+            "earned within the calendar year."
+        ),
+        "clause_category": "pay",
+    },
+]
+
+
 def main() -> None:
     RULES_DIR.mkdir(parents=True, exist_ok=True)
     rules: list[dict] = []
@@ -221,6 +251,8 @@ def main() -> None:
         "RA 8293",
         {"30": "ip", "178": "ip"},
     )
+
+    rules += SUPPLEMENTAL_RULES
 
     out = RULES_DIR / "rules.json"
     out.write_text(json.dumps(rules, indent=2, ensure_ascii=False), encoding="utf-8")

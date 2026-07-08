@@ -42,12 +42,26 @@ Atlas Vector Search · FastAPI on Hugging Face Spaces · React + Vite (stripped
 cases). Metrics: clause-detection precision/recall, verdict accuracy,
 citation accuracy (cited provision must exist in the knowledge base).
 
-| Metric | Score |
-|---|---|
-| Clause detection precision | _pending_ |
-| Clause detection recall | _pending_ |
-| Verdict accuracy | _pending_ |
-| Citation accuracy | _pending_ |
+| Metric | Baseline | After tuning |
+|---|---|---|
+| Clause detection precision | 100.0% | 99.0% |
+| Clause detection recall | 92.3% | **100.0%** |
+| Verdict accuracy | 67.2% | **81.0%** |
+| Citation accuracy | 90.5% | **91.4%** |
+
+Tuning between runs (model unchanged — gpt-5-mini):
+1. **KB gap fix:** baseline judged "13th-month pay built into salary" as
+   Compliant because PD 851's literal 1975 text caps coverage at a ₱1,000
+   salary. Added a curated rule for **Memorandum Order 28 (1986)**, which
+   removed the cap — the verdict now correctly flags the waiver.
+2. **Verdict prompt calibration:** the baseline judge punished contract
+   *silence* (e.g. an hours clause flagged for not restating rest-day
+   premium rates). Reworded to judge only what the clause states, since
+   statutory rights apply regardless of contract silence.
+
+Remaining errors are mostly borderline strictness on compliant hours/benefits
+clauses and Vague-vs-Non-compliant boundary calls. Eval detail:
+`eval/results.json` (tuned) and `eval/results_baseline.json`.
 
 Reproduce: `uv run python eval/run_eval.py`
 

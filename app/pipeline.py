@@ -70,6 +70,10 @@ def analyze_contract(pdf_bytes: bytes, filename: str,
         seen.add(clause.clause_type)
         rules = retrieve_rules(clause.text, clause.clause_type)
         verdict = judge_clause(clause, rules, llm)
+        if verdict.verdict == Verdict.missing:
+            # "Missing" is reserved for absent categories; a present clause
+            # the judge can't verify is Vague.
+            verdict.verdict = Verdict.vague
         reports.append(ClauseReport(
             clause_type=clause.clause_type,
             clause_text=clause.text,

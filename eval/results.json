@@ -1,0 +1,936 @@
+{
+  "precision": 0.9904761904761905,
+  "recall": 1.0,
+  "verdict_accuracy": 0.8103448275862069,
+  "citation_accuracy": 0.9137931034482759,
+  "rows": [
+    {
+      "contract": "c01_fully_compliant",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "ip",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c01_fully_compliant",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "probation",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c02_bad_probation",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "pay",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "benefits",
+      "expected": "Non-compliant",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "ip",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c04_benefits_waiver",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "termination",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c05_at_will",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "hours",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c06_overtime_waiver",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "ip",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c07_ip_overreach",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "ip",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c08_foreign_arbitration",
+      "category": "dispute",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "probation",
+      "expected": "Vague",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "termination",
+      "expected": "Vague",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "pay",
+      "expected": "Vague",
+      "got": "Vague",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "benefits",
+      "expected": "Vague",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "hours",
+      "expected": "Vague",
+      "got": "Vague",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c09_all_vague",
+      "category": "dispute",
+      "expected": "Vague",
+      "got": "Vague",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "probation",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "termination",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "pay",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "benefits",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "hours",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "ip",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c10_everything_wrong",
+      "category": "dispute",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "pay",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "benefits",
+      "expected": "Missing",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c11_missing_benefits_pay",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "probation",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "ip",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c12_missing_probation_dispute",
+      "category": "dispute",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "probation",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "termination",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "pay",
+      "expected": "Vague",
+      "got": "Vague",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "benefits",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "hours",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c13_bare_minimum",
+      "category": "dispute",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "probation",
+      "expected": "Vague",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": false
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "benefits",
+      "expected": "Vague",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "hours",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c14_mixed_1",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "termination",
+      "expected": "Vague",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "pay",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "hours",
+      "expected": "Vague",
+      "got": "Vague",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "ip",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c15_mixed_2",
+      "category": "dispute",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "probation",
+      "expected": "Non-compliant",
+      "got": "Non-compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Non-compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "pay",
+      "expected": "Vague",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "benefits",
+      "expected": "Non-compliant",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "ip",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c16_mixed_3",
+      "category": "dispute",
+      "expected": "Vague",
+      "got": "Compliant",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "termination",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "hours",
+      "expected": "Missing",
+      "got": "Missing",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c17_missing_hours_term",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "probation",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "termination",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "pay",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "benefits",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": false
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
+    },
+    {
+      "contract": "c18_compliant_no_ip",
+      "category": "dispute",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    }
+  ]
+}
