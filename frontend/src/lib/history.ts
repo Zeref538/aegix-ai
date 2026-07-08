@@ -48,6 +48,10 @@ export function deleteHistory(email: string, id: string): HistoryItem[] {
   return items
 }
 
+export function clearHistory(email: string) {
+  localStorage.removeItem(keyFor(email))
+}
+
 /** Group history items into Today / Yesterday / Earlier buckets. */
 export function groupHistory(
   items: HistoryItem[]

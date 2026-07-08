@@ -4,6 +4,7 @@ import { analyzeContract, type ComplianceReport } from './lib/api'
 import { useAuth } from './lib/auth'
 import {
   addHistory,
+  clearHistory,
   deleteHistory,
   loadHistory,
   type HistoryItem,
@@ -73,6 +74,13 @@ export function App() {
     if (id === activeId) newAnalysis()
   }
 
+  function clearAll() {
+    if (!confirm('Delete all analysis history? This cannot be undone.')) return
+    clearHistory(user!.email)
+    setHistory([])
+    newAnalysis()
+  }
+
   return (
     <div className='flex min-h-svh'>
       <Sidebar
@@ -83,6 +91,7 @@ export function App() {
         onNew={newAnalysis}
         onSelect={selectItem}
         onDelete={removeItem}
+        onClearAll={clearAll}
       />
 
       <div className='flex min-w-0 flex-1 flex-col'>

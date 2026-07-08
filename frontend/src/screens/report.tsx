@@ -1,58 +1,65 @@
 import {
   AlertTriangle,
+  BookOpen,
   CheckCircle2,
   CircleOff,
   HelpCircle,
   RotateCcw,
 } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import { cn } from '@/lib/utils'
-import type { ComplianceReport, Verdict } from '@/lib/api'
+import type { ClauseReport, ComplianceReport, Verdict } from '@/lib/api'
 
 const VERDICT_META: Record<
   Verdict,
-  { icon: typeof CheckCircle2; badge: string; text: string; glow: string }
+  {
+    icon: typeof CheckCircle2
+    text: string
+    chip: string
+    bar: string
+    glow: string
+    blurb: string
+  }
 > = {
-  Compliant: {
-    icon: CheckCircle2,
-    badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25',
-    text: 'text-emerald-400',
-    glow: 'bg-emerald-500/15',
-  },
   'Non-compliant': {
     icon: AlertTriangle,
-    badge: 'bg-red-500/10 text-red-400 border-red-500/25',
     text: 'text-red-400',
+    chip: 'bg-red-500/10 text-red-400 border-red-500/25',
+    bar: 'bg-red-500',
     glow: 'bg-red-500/15',
-  },
-  Vague: {
-    icon: HelpCircle,
-    badge: 'bg-amber-500/10 text-amber-400 border-amber-500/25',
-    text: 'text-amber-400',
-    glow: 'bg-amber-500/15',
+    blurb: 'Conflicts with the law',
   },
   Missing: {
     icon: CircleOff,
-    badge: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/25',
-    text: 'text-zinc-400',
+    text: 'text-zinc-300',
+    chip: 'bg-zinc-500/10 text-zinc-300 border-zinc-500/25',
+    bar: 'bg-zinc-400',
     glow: 'bg-zinc-500/15',
+    blurb: 'Not addressed in the contract',
+  },
+  Vague: {
+    icon: HelpCircle,
+    text: 'text-amber-400',
+    chip: 'bg-amber-500/10 text-amber-400 border-amber-500/25',
+    bar: 'bg-amber-500',
+    glow: 'bg-amber-500/15',
+    blurb: 'Too imprecise to verify',
+  },
+  Compliant: {
+    icon: CheckCircle2,
+    text: 'text-emerald-400',
+    chip: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25',
+    bar: 'bg-emerald-500',
+    glow: 'bg-emerald-500/15',
+    blurb: 'Meets the legal minimum',
   },
 }
 
-const VERDICT_ORDER: Verdict[] = ['Non-compliant', 'Vague', 'Missing', 'Compliant']
+const SEVERITY: Verdict[] = ['Non-compliant', 'Missing', 'Vague', 'Compliant']
 
 const CATEGORY_LABEL: Record<string, string> = {
-  probation: 'Probation',
-  termination: 'Termination',
+  probation: 'Probation period',
+  termination: 'Termination & notice',
   pay: 'Pay & 13th month',
   benefits: 'SSS · PhilHealth · Pag-IBIG',
   hours: 'Hours & overtime',
@@ -71,11 +78,15 @@ export function ReportScreen({
     acc[c.verdict] = (acc[c.verdict] ?? 0) + 1
     return acc
   }, {})
-
   const issues = (counts['Non-compliant'] ?? 0) + (counts['Missing'] ?? 0)
+
+  const ordered = [...report.clauses].sort(
+    (a, b) => SEVERITY.indexOf(a.verdict) - SEVERITY.indexOf(b.verdict)
+  )
 
   return (
     <div className='space-y-8'>
+      {/* Header */}
       <div className='flex flex-wrap items-end justify-between gap-4'>
         <div>
           <p className='text-primary mb-1.5 text-xs font-semibold tracking-[0.18em] uppercase'>
@@ -84,10 +95,15 @@ export function ReportScreen({
           <h1 className='text-2xl font-semibold tracking-tight'>
             {report.filename}
           </h1>
-          <p className='text-muted-foreground mt-1 text-sm'>
+          <p
+            className={cn(
+              'mt-1.5 text-sm',
+              issues > 0 ? 'text-red-400' : 'text-emerald-400'
+            )}
+          >
             {issues > 0
               ? `${issues} item${issues > 1 ? 's' : ''} need${issues > 1 ? '' : 's'} attention`
-              : 'No red flags found'}
+              : 'No red flags found — everything checks out'}
           </p>
         </div>
         <Button variant='outline' onClick={onReset} className='gap-2'>
@@ -96,8 +112,9 @@ export function ReportScreen({
         </Button>
       </div>
 
+      {/* Summary tiles */}
       <dl className='grid grid-cols-2 gap-3 lg:grid-cols-4'>
-        {VERDICT_ORDER.map((v) => {
+        {SEVERITY.map((v) => {
           const meta = VERDICT_META[v]
           const Icon = meta.icon
           return (
@@ -128,58 +145,69 @@ export function ReportScreen({
         })}
       </dl>
 
-      <div className='border-border/70 bg-card/60 overflow-x-auto rounded-xl border backdrop-blur-sm'>
-        <Table>
-          <TableHeader>
-            <TableRow className='border-border/70 hover:bg-transparent'>
-              <TableHead className='w-44 pl-5'>Clause</TableHead>
-              <TableHead className='w-36'>Verdict</TableHead>
-              <TableHead className='w-60'>Legal basis</TableHead>
-              <TableHead className='min-w-72 pr-5'>Explanation</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {report.clauses.map((c, i) => {
-              const meta = VERDICT_META[c.verdict]
-              const Icon = meta.icon
-              return (
-                <TableRow key={i} className='border-border/50 align-top'>
-                  <TableCell className='pl-5 font-medium'>
-                    {CATEGORY_LABEL[c.clause_type] ?? c.clause_type}
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant='outline'
-                      className={cn('gap-1 font-medium', meta.badge)}
-                    >
-                      <Icon className='size-3' aria-hidden />
-                      {c.verdict}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className='text-muted-foreground text-[13px]'>
-                    {c.citation}
-                  </TableCell>
-                  <TableCell className='pr-5 text-sm leading-relaxed'>
-                    {c.explanation}
-                    {c.clause_text && (
-                      <details className='mt-2'>
-                        <summary className='text-primary cursor-pointer text-xs font-medium hover:underline'>
-                          Show clause text
-                        </summary>
-                        <blockquote className='border-primary/40 text-muted-foreground mt-2 border-l-2 pl-3 text-xs leading-relaxed whitespace-pre-wrap'>
-                          {c.clause_text}
-                        </blockquote>
-                      </details>
-                    )}
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
+      {/* Clause findings as readable cards */}
+      <div className='space-y-4'>
+        {ordered.map((clause, i) => (
+          <ClauseCard key={i} clause={clause} />
+        ))}
       </div>
 
-      <p className='text-muted-foreground text-xs'>{report.disclaimer}</p>
+      <p className='text-muted-foreground border-border/50 border-t pt-5 text-xs leading-relaxed'>
+        {report.disclaimer}
+      </p>
     </div>
+  )
+}
+
+function ClauseCard({ clause }: { clause: ClauseReport }) {
+  const meta = VERDICT_META[clause.verdict]
+  const Icon = meta.icon
+  return (
+    <article className='border-border/70 bg-card/60 relative overflow-hidden rounded-xl border pl-1 backdrop-blur-sm'>
+      <div className={cn('absolute inset-y-0 left-0 w-1', meta.bar)} />
+      <div className='p-5'>
+        <div className='flex flex-wrap items-center justify-between gap-2'>
+          <h3 className='text-base font-semibold tracking-tight'>
+            {CATEGORY_LABEL[clause.clause_type] ?? clause.clause_type}
+          </h3>
+          <span
+            className={cn(
+              'flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium',
+              meta.chip
+            )}
+          >
+            <Icon className='size-3.5' aria-hidden />
+            {clause.verdict}
+          </span>
+        </div>
+
+        <p className={cn('mt-0.5 text-xs font-medium', meta.text)}>
+          {meta.blurb}
+        </p>
+
+        <p className='mt-3 text-[15px] leading-relaxed text-pretty'>
+          {clause.explanation}
+        </p>
+
+        <div className='text-muted-foreground mt-4 flex items-start gap-2 text-sm'>
+          <BookOpen className='mt-0.5 size-4 shrink-0' aria-hidden />
+          <span>
+            <span className='font-medium'>Legal basis: </span>
+            {clause.citation}
+          </span>
+        </div>
+
+        {clause.clause_text && (
+          <details className='group mt-3'>
+            <summary className='text-primary inline-flex cursor-pointer items-center text-xs font-medium hover:underline'>
+              Show the clause from your contract
+            </summary>
+            <blockquote className='border-border text-muted-foreground mt-2 border-l-2 pl-4 text-sm leading-relaxed whitespace-pre-wrap italic'>
+              {clause.clause_text}
+            </blockquote>
+          </details>
+        )}
+      </div>
+    </article>
   )
 }
