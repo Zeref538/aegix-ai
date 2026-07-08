@@ -1,0 +1,606 @@
+{
+  "c01_fully_compliant": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c02_bad_probation": {
+    "probation": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_long"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c03_no_13th_month": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_no13th"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c04_benefits_waiver": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "",
+      "variant": "ben_waive"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c05_at_will": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "294",
+      "variant": "term_atwill"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c06_overtime_waiver": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "8",
+      "variant": "hrs_bad"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c07_ip_overreach": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_all"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c08_foreign_arbitration": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_ok"
+    },
+    "dispute": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_bad"
+    }
+  },
+  "c09_all_vague": {
+    "probation": {
+      "verdict": "Vague",
+      "citation_must_contain": "296",
+      "variant": "prob_vague"
+    },
+    "termination": {
+      "verdict": "Vague",
+      "citation_must_contain": "29",
+      "variant": "term_vague"
+    },
+    "pay": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "pay_vague"
+    },
+    "benefits": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "ben_vague"
+    },
+    "hours": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "hrs_vague"
+    },
+    "dispute": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "disp_vague"
+    }
+  },
+  "c10_everything_wrong": {
+    "probation": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_long"
+    },
+    "termination": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "294",
+      "variant": "term_atwill"
+    },
+    "pay": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_no13th"
+    },
+    "benefits": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "",
+      "variant": "ben_waive"
+    },
+    "hours": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "8",
+      "variant": "hrs_bad"
+    },
+    "ip": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_all"
+    },
+    "dispute": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_bad"
+    }
+  },
+  "c11_missing_benefits_pay": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "benefits": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c12_missing_probation_dispute": {
+    "probation": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_ok"
+    },
+    "dispute": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    }
+  },
+  "c13_bare_minimum": {
+    "probation": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "termination": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "pay": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "pay_vague"
+    },
+    "benefits": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "hours": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "dispute": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    }
+  },
+  "c14_mixed_1": {
+    "probation": {
+      "verdict": "Vague",
+      "citation_must_contain": "296",
+      "variant": "prob_vague"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "ben_vague"
+    },
+    "hours": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "8",
+      "variant": "hrs_bad"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c15_mixed_2": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Vague",
+      "citation_must_contain": "29",
+      "variant": "term_vague"
+    },
+    "pay": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_no13th"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "hrs_vague"
+    },
+    "ip": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_all"
+    },
+    "dispute": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    }
+  },
+  "c16_mixed_3": {
+    "probation": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_long"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "pay_vague"
+    },
+    "benefits": {
+      "verdict": "Non-compliant",
+      "citation_must_contain": "",
+      "variant": "ben_waive"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "ip": {
+      "verdict": "Compliant",
+      "citation_must_contain": "178",
+      "variant": "ip_ok"
+    },
+    "dispute": {
+      "verdict": "Vague",
+      "citation_must_contain": "",
+      "variant": "disp_vague"
+    }
+  },
+  "c17_missing_hours_term": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Missing",
+      "citation_must_contain": ""
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  },
+  "c18_compliant_no_ip": {
+    "probation": {
+      "verdict": "Compliant",
+      "citation_must_contain": "296",
+      "variant": "prob_ok"
+    },
+    "termination": {
+      "verdict": "Compliant",
+      "citation_must_contain": "297",
+      "variant": "term_ok"
+    },
+    "pay": {
+      "verdict": "Compliant",
+      "citation_must_contain": "851",
+      "variant": "pay_ok"
+    },
+    "benefits": {
+      "verdict": "Compliant",
+      "citation_must_contain": "11199",
+      "variant": "ben_ok"
+    },
+    "hours": {
+      "verdict": "Compliant",
+      "citation_must_contain": "87",
+      "variant": "hrs_ok"
+    },
+    "dispute": {
+      "verdict": "Compliant",
+      "citation_must_contain": "224",
+      "variant": "disp_ok"
+    }
+  }
+}
