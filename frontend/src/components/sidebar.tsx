@@ -71,7 +71,7 @@ export function Sidebar({
           {history.length === 0 ? (
             <div className='text-muted-foreground mt-8 px-2 text-center text-xs'>
               <ShieldAlert className='mx-auto mb-2 size-6 opacity-50' />
-              No reviews yet. Bantay is standing by.
+              No reviews yet. Upload a contract to get started.
             </div>
           ) : (
             groups.map((group) => (

@@ -9,7 +9,7 @@ import {
   type HistoryItem,
 } from './lib/history'
 import { Sidebar } from './components/sidebar'
-import { BantayMark } from './components/logo'
+import { LogoMark } from './components/logo'
 import { SignInScreen } from './screens/signin'
 import { UploadScreen } from './screens/upload'
 import { ReportScreen } from './screens/report'
@@ -94,7 +94,7 @@ export function App() {
           >
             <Menu className='size-5' />
           </button>
-          <BantayMark className='size-7' />
+          <LogoMark className='size-7' />
           <span className='text-sm font-semibold'>ContractGuard PH</span>
         </header>
 

@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { BantayMark } from '@/components/logo'
+import { LogoMark } from '@/components/logo'
 import { useAuth, type User } from '@/lib/auth'
 
 function nameFromEmail(email: string): string {
@@ -45,14 +45,14 @@ export function SignInScreen() {
       <div className='mb-8 flex flex-col items-center text-center'>
         <div className='relative mb-5'>
           <div className='bg-primary/25 absolute inset-0 rounded-full blur-2xl' />
-          <BantayMark className='relative size-14' />
+          <LogoMark className='relative size-14' />
         </div>
         <h1 className='text-2xl font-semibold tracking-tight'>
           {mode === 'signin' ? 'Welcome back' : 'Create your account'}
         </h1>
         <p className='text-muted-foreground mt-2 text-sm text-balance'>
-          Bantay keeps watch over your contract reviews. Sign in to save them
-          and pick up where you left off.
+          Sign in to save your contract reviews and pick up where you left
+          off.
         </p>
       </div>
 
