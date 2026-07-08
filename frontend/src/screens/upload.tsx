@@ -10,7 +10,6 @@ import {
   Lightbulb,
   Scan,
   Scroll,
-  UploadSimple,
   UserMinus,
 } from '@phosphor-icons/react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -112,7 +111,7 @@ export function UploadScreen({ onUpload, loading, error }: Props) {
           >
             <div className='bg-primary/20 pointer-events-none absolute -top-16 left-1/2 h-32 w-72 -translate-x-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100' />
             <div className='border-border/80 bg-secondary/80 text-primary flex size-13 items-center justify-center rounded-xl border'>
-              <UploadSimple className='size-6' aria-hidden />
+              <FileArrowUp className='size-6' weight='bold' aria-hidden />
             </div>
             <div>
               <p className='font-medium'>

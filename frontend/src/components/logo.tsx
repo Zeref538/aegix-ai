@@ -62,7 +62,7 @@ export function Wordmark({ className }: { className?: string }) {
           Aegix <span className='text-primary'>AI</span>
         </p>
         <p className='text-muted-foreground mt-1 text-[11px]'>
-          PH contract compliance
+          Know before you sign
         </p>
       </div>
     </div>
