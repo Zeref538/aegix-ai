@@ -15,6 +15,7 @@ import {
 } from './lib/history'
 import { Sidebar } from './components/sidebar'
 import { LogoMark } from './components/logo'
+import { ThemeToggle } from './components/theme-toggle'
 import { SignInScreen } from './screens/signin'
 import { UploadScreen } from './screens/upload'
 import { ReportScreen } from './screens/report'
@@ -114,6 +115,7 @@ export function App() {
           <span className='text-sm font-semibold'>
             Aegix <span className='text-primary'>AI</span>
           </span>
+          <ThemeToggle className='ml-auto' />
         </header>
 
         <main className='mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 lg:py-12'>

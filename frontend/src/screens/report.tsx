@@ -24,32 +24,32 @@ const VERDICT_META: Record<
 > = {
   'Non-compliant': {
     icon: Warning,
-    text: 'text-red-400',
-    chip: 'bg-red-500/10 text-red-400 border-red-500/25',
+    text: 'text-red-600 dark:text-red-400',
+    chip: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/25',
     bar: 'bg-red-500',
     glow: 'bg-red-500/15',
     blurb: 'Conflicts with the law',
   },
   Missing: {
     icon: Prohibit,
-    text: 'text-zinc-300',
-    chip: 'bg-zinc-500/10 text-zinc-300 border-zinc-500/25',
+    text: 'text-zinc-600 dark:text-zinc-300',
+    chip: 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-300 border-zinc-500/25',
     bar: 'bg-zinc-400',
     glow: 'bg-zinc-500/15',
     blurb: 'Not addressed in the contract',
   },
   Vague: {
     icon: Question,
-    text: 'text-amber-400',
-    chip: 'bg-amber-500/10 text-amber-400 border-amber-500/25',
+    text: 'text-amber-600 dark:text-amber-400',
+    chip: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/25',
     bar: 'bg-amber-500',
     glow: 'bg-amber-500/15',
     blurb: 'Too imprecise to verify',
   },
   Compliant: {
     icon: CheckCircle,
-    text: 'text-emerald-400',
-    chip: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    chip: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25',
     bar: 'bg-emerald-500',
     glow: 'bg-emerald-500/15',
     blurb: 'Meets the legal minimum',
@@ -107,7 +107,7 @@ export function ReportScreen({
           <p
             className={cn(
               'mt-1.5 text-sm',
-              issues > 0 ? 'text-red-400' : 'text-emerald-400'
+              issues > 0 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'
             )}
           >
             {issues > 0

@@ -11,6 +11,7 @@ import {
 } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Wordmark } from '@/components/logo'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { cn } from '@/lib/utils'
 import { initials, useAuth } from '@/lib/auth'
 import { groupHistory, type HistoryItem } from '@/lib/history'
@@ -69,13 +70,16 @@ export function Sidebar({
       >
         <div className='flex items-center justify-between px-4 py-4'>
           <Wordmark />
-          <button
-            onClick={onClose}
-            className='text-muted-foreground hover:text-foreground md:hidden'
-            aria-label='Close sidebar'
-          >
-            <X className='size-5' />
-          </button>
+          <div className='flex items-center gap-1'>
+            <ThemeToggle />
+            <button
+              onClick={onClose}
+              className='text-muted-foreground hover:text-foreground md:hidden'
+              aria-label='Close sidebar'
+            >
+              <X className='size-5' />
+            </button>
+          </div>
         </div>
 
         <div className='px-3'>
