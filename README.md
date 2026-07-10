@@ -72,8 +72,9 @@ IRR (13th-month pay), RA 11199 (SSS), RA 11223 (PhilHealth), RA 9679
 Azure OpenAI (gpt-5-mini + text-embedding-3-small) · LangChain · MongoDB
 Atlas Vector Search · FastAPI in Docker on Render · React + Vite (stripped
 [shadcn-admin](https://github.com/satnaing/shadcn-admin)) on Vercel ·
-Supabase Auth (Google OAuth), with analysis history kept client-side in
-localStorage — the backend stores nothing about users or their contracts.
+Google sign-in via Google Identity Services (no auth backend), with analysis
+history kept client-side in localStorage — the backend stores nothing about
+users or their contracts.
 
 ## Evaluation
 
@@ -129,9 +130,9 @@ cd frontend && npm install && npm run dev # frontend on :5173
 ```
 
 Frontend env (`frontend/.env.local`): `VITE_API_URL` points at the backend
-(defaults to `http://localhost:8000`); `VITE_SUPABASE_URL` +
-`VITE_SUPABASE_ANON_KEY` enable Google sign-in and are optional — without
-them the app falls back to email/guest sign-in.
+(defaults to `http://localhost:8000`); `VITE_GOOGLE_CLIENT_ID` (a Google
+OAuth client ID) enables Google sign-in and is optional — without it the app
+falls back to email/guest sign-in.
 
 Tests: `uv run pytest`
 
