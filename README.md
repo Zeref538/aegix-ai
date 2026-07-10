@@ -1,10 +1,12 @@
 # Aegix AI
 
+[![CI](https://github.com/Zeref538/aegix-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Zeref538/aegix-ai/actions/workflows/ci.yml)
+
 **Philippine employment contract compliance checker.** Upload an employment
-contract PDF; get a fixed-schema report grading each clause — **Compliant /
-Non-compliant / Vague / Missing** — against the Labor Code, PD 851, and
-mandatory-benefits statutes, with a citation and a plain-English explanation
-for every verdict.
+contract (PDF, Word, or pasted text); get a fixed-schema report grading each
+clause — **Compliant / Non-compliant / Vague / Missing** — against the Labor
+Code, PD 851, and mandatory-benefits statutes, with a citation and a
+plain-English explanation for every verdict.
 
 > ⚠️ Not legal advice, and not a substitute for a qualified Philippine labor
 > lawyer. Employment contracts only (freelance/service agreements are out of
@@ -13,13 +15,20 @@ for every verdict.
 ## Architecture
 
 ```
-Contract PDF
-    → PyMuPDF text extraction
-    → LLM clause segmentation (GPT-4o-mini, Pydantic structured output)
+Contract (PDF / DOCX / TXT / pasted text)
+    → text extraction (PyMuPDF · mammoth)
+    → LLM clause segmentation (gpt-5-mini, Pydantic structured output)
     → per-clause-type retrieval (MongoDB Atlas Vector Search, category-filtered)
-    → verdict chain (verdict + citation + explanation, citation enforced)
-    → fixed-schema JSON report → React table view
+    → verdict chain, clauses judged in parallel
+      (verdict + citation + explanation, citation enforced)
+    → fixed-schema JSON report → React report view
 ```
+
+Clause verdicts run concurrently in a thread pool: each clause is a few
+network round-trips, so this turns a sum-of-latencies into roughly the slowest
+single clause (~128s → ~62s on a 9-clause contract). Every LLM and embedding
+call retries transient failures (429 / 5xx / timeouts) with jittered backoff,
+but never retries a 400.
 
 Knowledge base (built once): official statute texts scraped from LawPhil →
 parsed into 50 tagged rule chunks (`kb/rules/rules.json`) → embedded with
@@ -31,7 +40,7 @@ IRR (13th-month pay), RA 11199 (SSS), RA 11223 (PhilHealth), RA 9679
 
 ## Stack
 
-Azure OpenAI (GPT-4o-mini + text-embedding-3-small) · LangChain · MongoDB
+Azure OpenAI (gpt-5-mini + text-embedding-3-small) · LangChain · MongoDB
 Atlas Vector Search · FastAPI on Hugging Face Spaces · React + Vite (stripped
 [shadcn-admin](https://github.com/satnaing/shadcn-admin)) on Vercel.
 
@@ -42,26 +51,36 @@ Atlas Vector Search · FastAPI on Hugging Face Spaces · React + Vite (stripped
 cases). Metrics: clause-detection precision/recall, verdict accuracy,
 citation accuracy (cited provision must exist in the knowledge base).
 
-| Metric | Baseline | After tuning |
+| Metric | Baseline | Current |
 |---|---|---|
 | Clause detection precision | 100.0% | 99.0% |
 | Clause detection recall | 92.3% | **100.0%** |
-| Verdict accuracy | 67.2% | **81.0%** |
-| Citation accuracy | 90.5% | **91.4%** |
+| Verdict accuracy | 67.2% | **84.5%** |
+| Citation accuracy | 90.5% | **94.8%** |
 
-Tuning between runs (model unchanged — gpt-5-mini):
-1. **KB gap fix:** baseline judged "13th-month pay built into salary" as
-   Compliant because PD 851's literal 1975 text caps coverage at a ₱1,000
-   salary. Added a curated rule for **Memorandum Order 28 (1986)**, which
-   removed the cap — the verdict now correctly flags the waiver.
-2. **Verdict prompt calibration:** the baseline judge punished contract
-   *silence* (e.g. an hours clause flagged for not restating rest-day
-   premium rates). Reworded to judge only what the clause states, since
-   statutory rights apply regardless of contract silence.
+Model unchanged throughout (gpt-5-mini). What moved the numbers:
 
-Remaining errors are mostly borderline strictness on compliant hours/benefits
-clauses and Vague-vs-Non-compliant boundary calls. Eval detail:
-`eval/results.json` (tuned) and `eval/results_baseline.json`.
+1. **Knowledge-base gap.** The baseline judged "13th-month pay built into
+   salary" as Compliant, because PD 851's literal 1975 text only covers
+   employees earning ≤ ₱1,000/month. Added a curated rule for **Memorandum
+   Order 28 (1986)**, which removed that ceiling — the waiver is now caught.
+2. **Verdict prompt calibration.** The baseline judge punished contract
+   *silence* (an hours clause was flagged merely for not restating rest-day
+   premium rates). Statutory rights apply regardless of what a contract omits,
+   so the prompt now judges only what a clause actually states.
+3. **Scoring bug fix.** The harness keyed results by clause category, so when
+   a contract produced two clauses of one category (13 cases across the set)
+   all but the last were silently discarded. Categories are now grouped and
+   scored by their **most severe** verdict — what a reader actually acts on.
+
+> ⚠️ Because of (3) the two columns are not a like-for-like comparison: the
+> baseline was scored on fewer findings than the model produced. The 84.5% is
+> the honest figure.
+
+The 18 remaining verdict errors are all boundary calls, not citation failures —
+mostly over-strictness on compliant `hours` (10) and `benefits` (5) clauses,
+and Vague-vs-Non-compliant judgement calls. Detail in `eval/results.json`
+(current) and `eval/results_baseline.json`.
 
 Reproduce: `uv run python eval/run_eval.py`
 
@@ -80,9 +99,26 @@ cd frontend && npm install && npm run dev # frontend on :5173
 
 Tests: `uv run pytest`
 
-## Scope limits (v1)
+## Scope limits & known weaknesses (v1)
 
 English-language Philippine **employment** contracts only. Checks: probation,
 termination, pay/13th month, SSS/PhilHealth/Pag-IBIG, hours/overtime, IP
-ownership (when present), dispute resolution. Scanned/image-only PDFs are
-rejected.
+ownership (when present), dispute resolution.
+
+- **No OCR.** Scanned/image-only documents have no text layer and are rejected
+  with a prompt to paste the text instead.
+- **Prompt injection.** Contract text is untrusted input that reaches the
+  model. Both prompts instruct it to treat clause text as data and flag
+  instruction-like content as suspicious, but this is mitigation, not a proof.
+- **Verdict accuracy is 84.5%,** and errors skew toward over-strictness — the
+  tool is more likely to flag a lawful clause than to bless an unlawful one.
+  That is the safer direction for a screening tool, but it is not a lawyer.
+- **Retrieval is category-filtered,** so a clause mis-segmented into the wrong
+  category is checked against the wrong body of law.
+
+## Operations
+
+`ALLOWED_ORIGINS` restricts CORS (defaults to `*` for local dev — set it to the
+deployed frontend origin). `RATE_LIMIT_PER_HOUR` (default 20) caps analyses per
+IP, since each one spends Azure tokens. Uploads are capped at 10 MB while
+streaming, rather than buffered then rejected.

@@ -1,8 +1,8 @@
 {
   "precision": 0.9904761904761905,
   "recall": 1.0,
-  "verdict_accuracy": 0.8103448275862069,
-  "citation_accuracy": 0.9137931034482759,
+  "verdict_accuracy": 0.8448275862068966,
+  "citation_accuracy": 0.9482758620689655,
   "rows": [
     {
       "contract": "c01_fully_compliant",
@@ -32,8 +32,8 @@
       "contract": "c01_fully_compliant",
       "category": "benefits",
       "expected": "Compliant",
-      "got": "Compliant",
-      "verdict_ok": true,
+      "got": "Vague",
+      "verdict_ok": false,
       "citation_ok": true
     },
     {
@@ -96,7 +96,7 @@
       "contract": "c02_bad_probation",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Vague",
+      "got": "Non-compliant",
       "verdict_ok": false,
       "citation_ok": true
     },
@@ -136,20 +136,20 @@
       "contract": "c03_no_13th_month",
       "category": "benefits",
       "expected": "Compliant",
-      "got": "Compliant",
-      "verdict_ok": true,
-      "citation_ok": true
-    },
-    {
-      "contract": "c03_no_13th_month",
-      "category": "hours",
-      "expected": "Compliant",
       "got": "Vague",
       "verdict_ok": false,
       "citation_ok": true
     },
     {
       "contract": "c03_no_13th_month",
+      "category": "hours",
+      "expected": "Compliant",
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
+    },
+    {
+      "contract": "c03_no_13th_month",
       "category": "dispute",
       "expected": "Compliant",
       "got": "Compliant",
@@ -184,8 +184,8 @@
       "contract": "c04_benefits_waiver",
       "category": "benefits",
       "expected": "Non-compliant",
-      "got": "Compliant",
-      "verdict_ok": false,
+      "got": "Non-compliant",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
@@ -248,7 +248,7 @@
       "contract": "c05_at_will",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Vague",
+      "got": "Non-compliant",
       "verdict_ok": false,
       "citation_ok": true
     },
@@ -344,7 +344,7 @@
       "contract": "c07_ip_overreach",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Vague",
+      "got": "Non-compliant",
       "verdict_ok": false,
       "citation_ok": true
     },
@@ -400,7 +400,7 @@
       "contract": "c08_foreign_arbitration",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Non-compliant",
+      "got": "Vague",
       "verdict_ok": false,
       "citation_ok": true
     },
@@ -432,8 +432,8 @@
       "contract": "c09_all_vague",
       "category": "termination",
       "expected": "Vague",
-      "got": "Non-compliant",
-      "verdict_ok": false,
+      "got": "Vague",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
@@ -456,16 +456,16 @@
       "contract": "c09_all_vague",
       "category": "hours",
       "expected": "Vague",
-      "got": "Vague",
-      "verdict_ok": true,
+      "got": "Non-compliant",
+      "verdict_ok": false,
       "citation_ok": true
     },
     {
       "contract": "c09_all_vague",
       "category": "dispute",
       "expected": "Vague",
-      "got": "Vague",
-      "verdict_ok": true,
+      "got": "Compliant",
+      "verdict_ok": false,
       "citation_ok": true
     },
     {
@@ -560,8 +560,8 @@
       "contract": "c11_missing_benefits_pay",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Compliant",
-      "verdict_ok": true,
+      "got": "Vague",
+      "verdict_ok": false,
       "citation_ok": true
     },
     {
@@ -608,16 +608,16 @@
       "contract": "c12_missing_probation_dispute",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Compliant",
-      "verdict_ok": true,
-      "citation_ok": false
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
     },
     {
       "contract": "c12_missing_probation_dispute",
       "category": "ip",
       "expected": "Compliant",
-      "got": "Non-compliant",
-      "verdict_ok": false,
+      "got": "Compliant",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
@@ -688,9 +688,9 @@
       "contract": "c14_mixed_1",
       "category": "termination",
       "expected": "Compliant",
-      "got": "Non-compliant",
-      "verdict_ok": false,
-      "citation_ok": false
+      "got": "Compliant",
+      "verdict_ok": true,
+      "citation_ok": true
     },
     {
       "contract": "c14_mixed_1",
@@ -736,8 +736,8 @@
       "contract": "c15_mixed_2",
       "category": "termination",
       "expected": "Vague",
-      "got": "Non-compliant",
-      "verdict_ok": false,
+      "got": "Vague",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
@@ -792,33 +792,33 @@
       "contract": "c16_mixed_3",
       "category": "termination",
       "expected": "Compliant",
-      "got": "Non-compliant",
-      "verdict_ok": false,
+      "got": "Compliant",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
       "contract": "c16_mixed_3",
       "category": "pay",
       "expected": "Vague",
-      "got": "Compliant",
-      "verdict_ok": false,
+      "got": "Vague",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
       "contract": "c16_mixed_3",
       "category": "benefits",
       "expected": "Non-compliant",
-      "got": "Compliant",
-      "verdict_ok": false,
+      "got": "Non-compliant",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
       "contract": "c16_mixed_3",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Compliant",
-      "verdict_ok": true,
-      "citation_ok": false
+      "got": "Vague",
+      "verdict_ok": false,
+      "citation_ok": true
     },
     {
       "contract": "c16_mixed_3",
@@ -832,8 +832,8 @@
       "contract": "c16_mixed_3",
       "category": "dispute",
       "expected": "Vague",
-      "got": "Compliant",
-      "verdict_ok": false,
+      "got": "Vague",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
@@ -914,14 +914,14 @@
       "expected": "Compliant",
       "got": "Compliant",
       "verdict_ok": true,
-      "citation_ok": false
+      "citation_ok": true
     },
     {
       "contract": "c18_compliant_no_ip",
       "category": "hours",
       "expected": "Compliant",
-      "got": "Vague",
-      "verdict_ok": false,
+      "got": "Compliant",
+      "verdict_ok": true,
       "citation_ok": true
     },
     {
