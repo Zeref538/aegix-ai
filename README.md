@@ -8,6 +8,14 @@ clause — **Compliant / Non-compliant / Vague / Missing** — against the Labor
 Code, PD 851, and mandatory-benefits statutes, with a citation and a
 plain-English explanation for every verdict.
 
+**Live demo:** <https://aegix-ai-zeref.vercel.app> · API:
+<https://aegix-ai-api.onrender.com/health>
+
+> The backend runs on Render's free tier and sleeps after 15 minutes idle —
+> the first analysis after a quiet spell takes ~1 extra minute to wake it.
+> Verdicts stream in live as each clause finishes; a full analysis takes
+> about a minute. Sign in with Google, or continue as guest.
+
 > ⚠️ Not legal advice, and not a substitute for a qualified Philippine labor
 > lawyer. Employment contracts only (freelance/service agreements are out of
 > scope — different legal framework).
@@ -63,7 +71,9 @@ IRR (13th-month pay), RA 11199 (SSS), RA 11223 (PhilHealth), RA 9679
 
 Azure OpenAI (gpt-5-mini + text-embedding-3-small) · LangChain · MongoDB
 Atlas Vector Search · FastAPI in Docker on Render · React + Vite (stripped
-[shadcn-admin](https://github.com/satnaing/shadcn-admin)) on Vercel.
+[shadcn-admin](https://github.com/satnaing/shadcn-admin)) on Vercel ·
+Supabase Auth (Google OAuth), with analysis history kept client-side in
+localStorage — the backend stores nothing about users or their contracts.
 
 ## Evaluation
 
@@ -118,6 +128,11 @@ uv run uvicorn app.main:app --reload      # backend on :8000
 cd frontend && npm install && npm run dev # frontend on :5173
 ```
 
+Frontend env (`frontend/.env.local`): `VITE_API_URL` points at the backend
+(defaults to `http://localhost:8000`); `VITE_SUPABASE_URL` +
+`VITE_SUPABASE_ANON_KEY` enable Google sign-in and are optional — without
+them the app falls back to email/guest sign-in.
+
 Tests: `uv run pytest`
 
 ## Scope limits & known weaknesses (v1)
@@ -139,7 +154,10 @@ ownership (when present), dispute resolution.
 
 ## Operations
 
-`ALLOWED_ORIGINS` restricts CORS (defaults to `*` for local dev — set it to the
-deployed frontend origin). `RATE_LIMIT_PER_HOUR` (default 20) caps analyses per
-IP, since each one spends Azure tokens. Uploads are capped at 10 MB while
-streaming, rather than buffered then rejected.
+Deployed via `render.yaml` blueprint (Docker on Render, Singapore, health
+check on `/health`); the frontend deploys from `frontend/` on every push to
+`main` via Vercel's Git integration. `ALLOWED_ORIGINS` restricts CORS
+(defaults to `*` for local dev — in production it is pinned to the Vercel
+origin). `RATE_LIMIT_PER_HOUR` (default 20) caps analyses per IP, since each
+one spends Azure tokens. Uploads are capped at 10 MB while streaming, rather
+than buffered then rejected.
