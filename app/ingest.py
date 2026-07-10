@@ -1,14 +1,17 @@
 """Contract ingestion: turn an uploaded file or pasted text into raw text.
 
 Supported inputs:
-  - PDF  (PyMuPDF, with MarkItDown as a fallback)
-  - DOCX (MarkItDown)
+  - PDF  (PyMuPDF)
+  - DOCX (mammoth)
   - TXT  (decoded directly)
   - pasted plain text (used as-is)
+
+Scanned/image-only documents have no text layer; we reject them and tell the
+user to paste the text instead (there is no OCR step by design).
 """
 
+import io
 import os
-import tempfile
 
 import fitz
 
@@ -19,21 +22,15 @@ class EmptyPdfError(ValueError):
     """Raised when a document has no usable extractable text."""
 
 
-def _markitdown_bytes(data: bytes, suffix: str) -> str:
-    from markitdown import MarkItDown
-
-    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as f:
-        f.write(data)
-        path = f.name
-    try:
-        return MarkItDown(enable_plugins=False).convert(path).text_content or ""
-    finally:
-        os.unlink(path)
-
-
 def _pdf_text(data: bytes) -> str:
     with fitz.open(stream=data, filetype="pdf") as doc:
         return "\n".join(page.get_text() for page in doc).strip()
+
+
+def _docx_text(data: bytes) -> str:
+    import mammoth
+
+    return mammoth.extract_raw_text(io.BytesIO(data)).value.strip()
 
 
 def extract_text(data: bytes, filename: str = "contract.pdf") -> str:
@@ -42,12 +39,13 @@ def extract_text(data: bytes, filename: str = "contract.pdf") -> str:
     if ext == ".pdf":
         text = _pdf_text(data)
     elif ext in (".docx", ".doc"):
-        text = _markitdown_bytes(data, ".docx").strip()
+        text = _docx_text(data)
     elif ext in (".txt", ".md", ".text"):
         text = data.decode("utf-8", errors="replace").strip()
     else:
-        # Best effort for anything else MarkItDown might understand
-        text = _markitdown_bytes(data, ext or ".bin").strip()
+        raise EmptyPdfError(
+            "Unsupported file type. Upload a PDF, Word (.docx), or text file."
+        )
 
     if len(text) < MIN_CHARS:
         raise EmptyPdfError(
