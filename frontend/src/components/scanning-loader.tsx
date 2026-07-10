@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   CheckCircle,
   CircleNotch,
@@ -36,14 +37,54 @@ const VERDICT_META: Record<
   },
 }
 
+const SEGMENTING_MESSAGES = [
+  'Reading the contract…',
+  'Extracting the text layer…',
+  'Finding clause boundaries…',
+  'Identifying what each clause covers…',
+]
+
+const RETRIEVAL_MESSAGES = [
+  'Retrieving the governing provisions…',
+  'Searching the Labor Code…',
+  'Matching clauses to statutes…',
+]
+
+/** Cycle a list of strings on an interval, restarting when the list changes. */
+function useTicker(period = 1900) {
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), period)
+    return () => clearInterval(id)
+  }, [period])
+  return tick
+}
+
 export function ScanningLoader({ progress }: { progress: Progress }) {
   const { stage, total, clauses, verdicts } = progress
   const done = Object.keys(verdicts).length
   const pct = total ? Math.round((done / total) * 100) : 0
+  const tick = useTicker()
+
+  // While judging, name the clauses that are actually still outstanding —
+  // the status line reports real work, not a canned script.
+  const pending = clauses.filter((c) => verdicts[c.index] === undefined)
+  let messages: string[]
+  if (stage === 'segmenting') {
+    messages = SEGMENTING_MESSAGES
+  } else if (pending.length > 0) {
+    messages = [
+      ...pending.map((c) => `Checking ${categoryLabel(c.clause_type)}…`),
+      ...RETRIEVAL_MESSAGES,
+    ]
+  } else {
+    messages = ['Compiling your compliance report…']
+  }
+  const message = messages[tick % messages.length]
 
   return (
-    <div className='mx-auto flex max-w-lg flex-col items-center py-6'>
-      <div className='relative w-full'>
+    <div className='flex w-full flex-1 flex-col items-center justify-center py-8'>
+      <div className='relative w-full max-w-lg'>
         <div className='bg-primary/10 absolute -inset-4 rounded-3xl blur-2xl' />
 
         <div className='border-border/70 bg-card relative overflow-hidden rounded-xl border shadow-xl'>
@@ -52,7 +93,7 @@ export function ScanningLoader({ progress }: { progress: Progress }) {
             <div className='flex items-center justify-between gap-3'>
               <p className='text-sm font-medium'>
                 {stage === 'segmenting'
-                  ? 'Reading the contract…'
+                  ? 'Reading the contract'
                   : 'Checking clauses against the Labor Code'}
               </p>
               {total > 0 && (
@@ -65,7 +106,7 @@ export function ScanningLoader({ progress }: { progress: Progress }) {
               <div
                 className={cn(
                   'bg-primary h-full rounded-full transition-all duration-500',
-                  total === 0 && 'animate-pulse w-1/3'
+                  total === 0 && 'w-1/3 animate-pulse'
                 )}
                 style={total ? { width: `${pct}%` } : undefined}
               />
@@ -145,11 +186,19 @@ export function ScanningLoader({ progress }: { progress: Progress }) {
         </div>
       </div>
 
-      <p className='text-muted-foreground mt-6 text-center text-sm'>
-        {stage === 'segmenting'
-          ? 'Splitting the contract into clauses…'
-          : `${done} of ${total} clauses checked — results appear as each finishes.`}
+      {/* Rotating status — the message names work actually outstanding */}
+      <p
+        key={message}
+        aria-live='polite'
+        className='text-muted-foreground flag-pop mt-6 min-h-5 text-center text-sm'
+      >
+        {message}
       </p>
+      {total > 0 && (
+        <p className='text-muted-foreground/70 mt-1.5 text-center text-xs'>
+          {done} of {total} clauses checked — results appear as each finishes.
+        </p>
+      )}
     </div>
   )
 }
