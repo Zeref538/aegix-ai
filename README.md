@@ -10,9 +10,9 @@ every clause — **Compliant / Non-compliant / Vague / Missing** — against the
 Labor Code, PD 851, and the mandatory-benefits statutes, each verdict backed
 by a citation and a plain-English explanation.
 
-**Try it: <https://aegix-ai-zeref.vercel.app>** — sign in with Google or
-continue as guest. Verdicts stream in live as each clause is judged; a full
-analysis takes about a minute.
+**Try it: <https://aegix-ai-zeref.vercel.app>** — sign in with Google or an
+email. Verdicts stream in live as each clause is judged; a full analysis
+takes about a minute.
 
 > ⚠️ Automated screening, not legal advice — consult a qualified Philippine
 > labor lawyer for binding guidance. Employment contracts only;
@@ -171,7 +171,7 @@ same suite runs in CI on every push alongside the frontend build.
 | `ALLOWED_ORIGINS` | backend | CORS allowlist (`*` for local dev; pinned to the Vercel origin in production) |
 | `RATE_LIMIT_PER_HOUR` | backend | analyses per IP (default 20) |
 | `VITE_API_URL` | frontend | backend base URL (default `http://localhost:8000`) |
-| `VITE_GOOGLE_CLIENT_ID` | frontend | enables Google sign-in; optional — email/guest works without it |
+| `VITE_GOOGLE_CLIENT_ID` | frontend | enables Google sign-in; optional — email sign-in works without it |
 
 **Deployment** is config-as-code: `render.yaml` provisions the Dockerized API
 (Singapore, health-checked on `/health`, secrets prompted rather than
