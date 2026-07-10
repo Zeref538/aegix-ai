@@ -99,13 +99,13 @@ export function UploadScreen({
           </p>
 
           {/* Mode toggle */}
-          <div className='bg-secondary/60 mt-6 inline-flex rounded-lg border p-1'>
+          <div className='bg-secondary/60 mt-6 grid w-full grid-cols-2 rounded-lg border p-1 sm:inline-flex sm:w-auto'>
             {(['file', 'text'] as const).map((m) => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
                 className={cn(
-                  'flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
+                  'flex touch-manipulation items-center justify-center gap-1.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors sm:justify-start sm:py-1.5',
                   mode === m
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -215,8 +215,10 @@ export function UploadScreen({
                 <div className='bg-secondary text-primary flex size-8 shrink-0 items-center justify-center rounded-lg'>
                   <Icon className='size-4' aria-hidden />
                 </div>
-                <span className='flex-1 text-sm font-medium'>{label}</span>
-                <span className='text-muted-foreground text-xs tabular-nums'>
+                <span className='min-w-0 flex-1 text-sm font-medium'>
+                  {label}
+                </span>
+                <span className='text-muted-foreground shrink-0 text-xs tabular-nums'>
                   {law}
                 </span>
               </li>

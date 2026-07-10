@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Out-of-focus light orbs. Each floats on its own along a slow, organic path
-// (sum of sine waves), and the mouse gently nudges them by depth (parallax).
+// (sum of sine waves); on pointer devices the mouse gently nudges them by depth.
 const ORBS = [
   { size: 380, x: '6%', y: '10%', depth: 26, color: 'oklch(0.585 0.13 277 / 0.22)', ax: 80, ay: 60, sx: 0.00011, sy: 0.00015, px: 0.0, py: 1.3 },
   { size: 300, x: '80%', y: '6%', depth: 42, color: 'oklch(0.62 0.15 300 / 0.17)', ax: 65, ay: 85, sx: 0.00016, sy: 0.00012, px: 2.1, py: 0.4 },
@@ -11,8 +11,29 @@ const ORBS = [
   { size: 160, x: '90%', y: '46%', depth: 30, color: 'oklch(0.62 0.15 300 / 0.15)', ax: 85, ay: 100, sx: 0.00013, sy: 0.00019, px: 2.8, py: 0.9 },
 ]
 
+// Phones: fewer, smaller orbs — large blur radii are expensive to composite.
+const MOBILE_ORBS = ORBS.slice(0, 3).map((o) => ({
+  ...o,
+  size: Math.round(o.size * 0.6),
+  ax: o.ax * 0.6,
+  ay: o.ay * 0.6,
+}))
+
 export function BokehField() {
   const orbRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [small, setSmall] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth < 640
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)')
+    const onChange = () => setSmall(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  const orbs = small ? MOBILE_ORBS : ORBS
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -20,48 +41,47 @@ export function BokehField() {
     const target = { x: 0, y: 0 }
     const smooth = { x: 0, y: 0 }
 
+    // Touch devices have no hover — skip the pointer listener entirely.
+    const coarse = window.matchMedia('(pointer: coarse)').matches
     function onMove(e: MouseEvent) {
       target.x = e.clientX / window.innerWidth - 0.5
       target.y = e.clientY / window.innerHeight - 0.5
     }
-    window.addEventListener('mousemove', onMove, { passive: true })
+    if (!coarse) window.addEventListener('mousemove', onMove, { passive: true })
 
     let raf = 0
     function frame(now: number) {
-      // ease the mouse influence so it feels soft, not twitchy
       smooth.x += (target.x - smooth.x) * 0.04
       smooth.y += (target.y - smooth.y) * 0.04
 
-      for (let i = 0; i < ORBS.length; i++) {
+      for (let i = 0; i < orbs.length; i++) {
         const el = orbRefs.current[i]
         if (!el) continue
-        const o = ORBS[i]
+        const o = orbs[i]
         const dx =
           o.ax * Math.sin(now * o.sx + o.px) +
           0.4 * o.ax * Math.sin(now * o.sx * 2.3 + o.px * 1.7)
         const dy =
           o.ay * Math.cos(now * o.sy + o.py) +
           0.4 * o.ay * Math.cos(now * o.sy * 1.9 + o.py * 1.3)
-        const tx = dx + smooth.x * o.depth
-        const ty = dy + smooth.y * o.depth
-        el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`
+        el.style.transform = `translate3d(${dx + smooth.x * o.depth}px, ${dy + smooth.y * o.depth}px, 0)`
       }
       raf = requestAnimationFrame(frame)
     }
     raf = requestAnimationFrame(frame)
 
     return () => {
-      window.removeEventListener('mousemove', onMove)
+      if (!coarse) window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [orbs])
 
   return (
     <div
       aria-hidden
       className='pointer-events-none fixed inset-0 -z-10 overflow-hidden'
     >
-      {ORBS.map((o, i) => (
+      {orbs.map((o, i) => (
         <div
           key={i}
           ref={(el) => {

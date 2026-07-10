@@ -107,7 +107,7 @@ export function App() {
           <button
             onClick={() => setSidebarOpen(true)}
             aria-label='Open menu'
-            className='text-muted-foreground hover:text-foreground'
+            className='text-muted-foreground hover:text-foreground -ml-2 flex size-11 touch-manipulation items-center justify-center rounded-lg'
           >
             <List className='size-5' />
           </button>

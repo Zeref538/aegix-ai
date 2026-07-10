@@ -74,7 +74,7 @@ export function Sidebar({
             <ThemeToggle />
             <button
               onClick={onClose}
-              className='text-muted-foreground hover:text-foreground md:hidden'
+              className='text-muted-foreground hover:text-foreground flex size-11 items-center justify-center rounded-lg md:hidden'
               aria-label='Close sidebar'
             >
               <X className='size-5' />
@@ -103,9 +103,9 @@ export function Sidebar({
                 </span>
                 <button
                   onClick={onClearAll}
-                  className='text-muted-foreground hover:text-destructive flex items-center gap-1 text-[11px]'
+                  className='text-muted-foreground hover:text-destructive -m-1.5 flex items-center gap-1 p-1.5 text-[11px]'
                 >
-                  <Trash className='size-3' />
+                  <Trash className='size-3.5' />
                   Clear
                 </button>
               </div>
@@ -140,9 +140,10 @@ export function Sidebar({
                           <button
                             onClick={() => onDelete(item.id)}
                             aria-label={`Delete ${item.filename}`}
-                            className='text-muted-foreground hover:text-destructive shrink-0 opacity-0 transition-opacity group-hover:opacity-100'
+                            // Always visible on touch (no hover); reveal on hover for pointers
+                            className='text-muted-foreground hover:text-destructive -m-2 shrink-0 p-2 opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100'
                           >
-                            <TrashSimple className='size-3.5' />
+                            <TrashSimple className='size-4' />
                           </button>
                         </div>
                       </li>

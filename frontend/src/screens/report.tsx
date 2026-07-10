@@ -97,11 +97,11 @@ export function ReportScreen({
     <div className='space-y-8'>
       {/* Header */}
       <div className='flex flex-wrap items-end justify-between gap-4'>
-        <div>
+        <div className='min-w-0'>
           <p className='text-primary mb-1.5 text-xs font-semibold tracking-[0.18em] uppercase'>
             Compliance report
           </p>
-          <h1 className='text-2xl font-semibold tracking-tight'>
+          <h1 className='text-xl font-semibold tracking-tight break-words sm:text-2xl'>
             {report.filename}
           </h1>
           <p
@@ -233,7 +233,7 @@ function ClauseCard({ clause }: { clause: ClauseReport }) {
   return (
     <article className='border-border/70 bg-card/60 relative overflow-hidden rounded-xl border pl-1 backdrop-blur-sm'>
       <div className={cn('absolute inset-y-0 left-0 w-1', meta.bar)} />
-      <div className='p-5'>
+      <div className='p-4 sm:p-5'>
         <div className='flex flex-wrap items-center justify-between gap-2'>
           <h3 className='text-base font-semibold tracking-tight'>
             {CATEGORY_LABEL[clause.clause_type] ?? clause.clause_type}
@@ -259,7 +259,7 @@ function ClauseCard({ clause }: { clause: ClauseReport }) {
 
         <div className='text-muted-foreground mt-4 flex items-start gap-2 text-sm'>
           <BookOpen className='mt-0.5 size-4 shrink-0' aria-hidden />
-          <span>
+          <span className='min-w-0 break-words'>
             <span className='font-medium'>Legal basis: </span>
             {clause.citation}
           </span>
@@ -270,7 +270,7 @@ function ClauseCard({ clause }: { clause: ClauseReport }) {
             <summary className='text-primary inline-flex cursor-pointer items-center text-xs font-medium hover:underline'>
               Show the clause from your contract
             </summary>
-            <blockquote className='border-border text-muted-foreground mt-2 border-l-2 pl-4 text-sm leading-relaxed whitespace-pre-wrap italic'>
+            <blockquote className='border-border text-muted-foreground mt-2 border-l-2 pl-4 text-sm leading-relaxed break-words whitespace-pre-wrap italic'>
               {clause.clause_text}
             </blockquote>
           </details>
