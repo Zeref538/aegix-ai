@@ -6,3 +6,4 @@ kb/raw/
 LaborCodeofthePhilippines20171.pdf
 node_modules/
 dist/
+frontend/.env.local
